@@ -1,1 +1,608 @@
-<div>nov okvir</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator and Number System Converter</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #333; 
+        color: #fff;
+        margin: 0;
+        padding: 0;
+    }
+
+
+    h1 {
+        text-align: center;
+        padding: 20px;
+        background-color: #555; 
+        color: #fff; 
+        margin: 0;
+    }
+
+
+    #clear {
+        width: 100%;
+        border: 3px solid #777; 
+        border-radius: 3px;
+        padding: 15px;
+        background-color: #FFA500; 
+        color: #fff; 
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+
+
+    .formstyle {
+        width: 80%;
+        max-width: 450px;
+        margin: auto;
+        border: 3px solid #555;
+        border-radius: 5px;
+        padding: 20px;
+        background-color: #888; 
+        box-sizing: border-box;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+
+    input {
+        width: 50px;
+        background-color: #444; 
+        color: #fff; /* Bela barva */
+        border: 3px solid #555; 
+        border-radius: 5px;
+        padding: 10px;
+        margin: 5px;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
+
+    #calc {
+        width: 100%;
+        border: 5px solid #555; 
+        border-radius: 3px;
+        padding: 15px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+
+
+    .converter {
+        width: 80%;
+        max-width: 400px;
+        margin: auto;
+        border: 3px solid #555; 
+        border-radius: 5px;
+        padding: 20px;
+        background-color: #888; 
+        margin-top: 20px;
+        box-sizing: border-box;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: #ccc; 
+    }
+
+
+    select,
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #555; 
+        border-radius: 5px;
+        box-sizing: border-box;
+        background-color: #444; 
+        color: #fff; 
+    }
+
+
+    #conversionResult {
+        width: calc(100% - 22px);
+    }
+
+
+    .option {
+        margin-bottom: 10px;
+    }
+     .logical {
+        width: 80%;
+        max-width: 400px;
+        margin: auto;
+        margin-top: 20px;
+        border: 3px solid #555; 
+        border-radius: 5px;
+        padding: 20px;
+        background-color: #888; 
+        box-sizing: border-box;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     }
+    button {
+        width: 60px;
+        background-color: #FFA500; 
+        color: white;
+        border: 1px solid #777; 
+        border-radius: 5px;
+        padding: 10px;
+        margin: 5px;
+        font-size: 15px;
+        cursor: pointer;
+     }
+    
+     .file {
+        width: 80%;
+        max-width: 400px;
+        margin: auto;
+        border: 3px solid #555; 
+        border-radius: 5px;
+        padding: 20px;
+        background-color: #888; 
+        margin-top: 20px;
+        box-sizing: border-box;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+
+    input[type="file"] {
+        display: none;
+    }
+
+
+    .file label {
+        width: 200px;
+        background-color: #FFA500; 
+        color: white;
+        border: 1px solid #777; 
+        border-radius: 5px;
+        padding: 10px;
+        margin: 5px;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
+
+    pre {
+        width: 100%;
+        padding: 10px;
+        margin: 5px;
+        margin-bottom: 10px;
+        border: 1px solid #555; 
+        border-radius: 5px;
+        box-sizing: border-box;
+        background-color: #444; 
+        color: #fff;
+    }
+
+
+    footer {
+        background-color: #808080;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+    }
+</style>
+
+
+
+
+</head>
+<body>
+    <h1>Calculator Program</h1>
+    <br>
+    <div class="formstyle">
+        <form name="form1">
+            
+            <input id="calc" type="text" name="answer"> <br> <br>
+            <input type="button" value="1" onclick="appendToAnswer('1')">
+            <input type="button" value="2" onclick="appendToAnswer('2')">
+            <input type="button" value="3" onclick="appendToAnswer('3')">
+            <input type="button" value="+" onclick="appendToAnswer('+')">
+            <input type="button" value="**" onclick="appendToAnswer('**')">
+            <br> <br>
+            <input type="button" value="4" onclick="appendToAnswer('4')">
+            <input type="button" value="5" onclick="appendToAnswer('5')">
+            <input type="button" value="6" onclick="appendToAnswer('6')">
+            <input type="button" value="-" onclick="appendToAnswer('-')">
+            <input type="button" value="sqrt" onclick="appendToAnswer('Math.sqrt(')">
+            <br> <br>
+            <input type="button" value="7" onclick="appendToAnswer('7')">
+            <input type="button" value="8" onclick="appendToAnswer('8')">
+            <input type="button" value="9" onclick="appendToAnswer('9')">
+            <input type="button" value="*" onclick="appendToAnswer('*')">
+            <input type="button" value="%" onclick="appendToAnswer('%')">
+            <br> <br>
+            <input type="button" value="/" onclick="appendToAnswer('/')">
+            <input type="button" value="0" onclick="appendToAnswer('0')">
+            <input type="button" value="." onclick="appendToAnswer('.')">
+            <input type="button" value="(" onclick="appendToAnswer('(')">
+            <input type="button" value=")" onclick="appendToAnswer(')')">
+            <br>
+            <input style= "width: 100%;" type="button" value="=" onclick="calculateResult()">
+            <input type="button" value="Clear All" onclick="clearAnswer()" id="clear">
+
+
+        </form>
+    </div>
+<br>
+    <h1>Number System Converter</h1>
+    <br>
+    <div class="converter">
+        <section>
+            <div class="option">
+                <span>
+                    <label>Convert from:</label>
+                    <select id="typeFrom" onchange="updateConversion()">
+                        <option value="10">Decimal</option>
+                        <option value="2">Binary</option>
+                        <option value="8">Octal</option>
+                        <option value="16">Hexadecimal</option>
+                    </select>
+                </span>
+                <span>
+                    <label>Convert to:</label>
+                    <select id="typeTo" onchange="updateConversion()">
+                        <option value="10">Decimal</option>
+                        <option value="2">Binary</option>
+                        <option value="8">Octal</option>
+                        <option value="16">Hexadecimal</option>
+                    </select>
+                </span>
+                <br />
+                <br />
+                <span>
+                    <label id="inputType">Enter Number:</label>
+                    <input type="text" min="0" value="0" id="input" onkeyup="updateConversion()" />
+                </span>
+                <span>
+                    <label id="resultType">Result:</label>
+                    <input id="conversionResult" type="text" min="0" value="0" readonly />
+                </span>
+            </div>
+        </section>
+    </div>
+
+
+    <script>
+        // Funkcije za kalkulator
+        function appendToAnswer(value) {
+            document.form1.answer.value += value;
+        }
+
+
+        function clearAnswer() {
+            document.form1.answer.value = '';
+        }
+
+
+        function calculateResult() {
+            try {
+                document.form1.answer.value = eval(document.form1.answer.value);
+            } catch (error) {
+                document.form1.answer.value = 'Error';
+            }
+        }
+
+
+
+
+
+
+
+
+         //Funkcije za pretvarjanje
+
+
+        function updateConversion() {
+            const typeFrom = document.getElementById("typeFrom").value;
+            const typeTo = document.getElementById("typeTo").value;
+            const inputValue = document.getElementById("input").value;
+            const conversionResult = document.getElementById("conversionResult");
+
+
+            if (typeFrom === "2" && !/^[01]*$/.test(inputValue)) {
+                // input se izbriše pri prisotnosti katere koli druge številke razen 1 ali 0
+                document.getElementById("input").value = "";
+            } else {
+                // drugače se pretvorba nadaljuje
+                conversionResult.value = convertNumber(inputValue, +typeFrom, +typeTo);
+            }
+        }
+
+
+        function convertNumber(value, fromBase, toBase) {
+            const digits = "0123456789ABCDEF";
+            let result = '';
+            let number = 0;
+
+
+            if (fromBase === 10) {
+                number = +value;
+            } else {
+                const isNegative = value.startsWith('-');
+                const base = (fromBase === 16) ? 16 : (fromBase === 8) ? 8 : 2;
+                const startIndex = isNegative ? 1 : 0;
+
+
+                for (let i = startIndex; i < value.length; i++) {
+                    const digit = digits.indexOf(value[i].toUpperCase());
+                    number = number * base + digit;
+                }
+
+
+                if (isNegative) {
+                    number = -number;
+                }
+            }
+
+
+            if (isNaN(number)) {
+                return 'Invalid Input';
+            }
+
+
+            if (toBase === 10) {
+                return '' + number;
+            }
+
+
+            // pretvaranje desetiških števil v želeni sistem 
+            while (number > 0) {
+                const remainder = number % toBase;
+                result = digits[remainder] + result;
+                number = (number - remainder) / toBase;
+            }
+
+
+            return result || '0';
+        }
+
+
+        //posodobitev pretvarjanja
+        updateConversion();
+    </script>
+    <br>
+
+
+    <h1>Logical Operations Calculator</h1>
+    <div class="logical">
+        <input type="text" id="input1" placeholder="Enter operand 1">
+        <input type="text" id="input2" placeholder="Enter operand 2">
+        <br>
+        <button onclick="performOperation('AND')">AND</button>
+        <button onclick="performOperation('OR')">OR</button>
+        <button onclick="performOperation('XOR')">XOR</button>
+        <br>
+        <input type="text" id="result" placeholder="Result" readonly>
+    </div>
+
+
+    <script>
+        function performOperation(operation) {
+            const operand1 = document.getElementById('input1').value;
+            const operand2 = document.getElementById('input2').value;
+            let result;
+
+
+            switch (operation) {
+                case 'AND':
+                    result = performAND(operand1, operand2);
+                    break;
+                case 'OR':
+                    result = performOR(operand1, operand2);
+                    break;
+                case 'XOR':
+                    result = performXOR(operand1, operand2);
+                    break;
+                default:
+                    result = 'Invalid operation';
+            }
+
+
+            document.getElementById('result').value = result;
+        }
+
+
+        function performAND(operand1, operand2) {
+            let result = '';
+            for (let i = 0; i < operand1.length && i < operand2.length; i++) {
+                if (operand1[i] === '1' && operand2[i] === '1') {
+                    result += '1';
+                } else {
+                    result += '0';
+                }
+            }
+            return result;
+        }
+
+
+        function performOR(operand1, operand2) {
+            let result = '';
+            for (let i = 0; i < operand1.length && i < operand2.length; i++) {
+                if (operand1[i] === '1' || operand2[i] === '1') {
+                    result += '1';
+                } else {
+                    result += '0';
+                }
+            }
+            return result;
+        }
+
+
+        function performXOR(operand1, operand2) {
+            let result = '';
+            for (let i = 0; i < operand1.length && i < operand2.length; i++) {
+                if ((operand1[i] === '1' && operand2[i] === '0') || (operand1[i] === '0' && operand2[i] === '1')) {
+                    result += '1';
+                } else {
+                    result += '0';
+                }
+            }
+            return result;
+        }
+    </script>
+
+
+    <br>
+    <h1>Read Equation From File</h1>
+    <div class="file">
+        <label for="inputFile">Choose equation file</label>
+        <input type="file" name="inputFile" id="inputFile" accept=".txt">
+        <pre id="output"></pre>
+        <br>
+        <label for="inputFile2">Choose conversion file</label>
+        <input type="file" name="inputFile2" id="inputFile2" accept=".txt">
+        <pre id="output2"></pre>
+        <br>
+        <label for="inputFile3">Choose logical operations file</label>
+        <input type="file" name="inputFile3" id="inputFile3" accept=".txt">
+        <pre id="output3"></pre>
+    </div>
+
+
+    <script>
+        //računanje iz datoteke
+        document.getElementById('inputFile').addEventListener('change', function () {
+            const inputFile = document.getElementById('inputFile');
+            const outputElement = document.getElementById('output');
+
+
+            if (!inputFile.files.length) {
+                alert('Please choose a file.');
+                return;
+            }
+
+
+            const fr = new FileReader();
+            fr.onload = (event) => {
+                const file = event.target.result;
+                const allLines = file.split(/\r\n|\n/);
+
+
+                allLines.forEach((line) => {
+                    try {
+                        let result = eval(line);
+                        if (isNaN(result)) {
+                            throw new Error('Invalid equation');
+                        }
+
+
+                        outputElement.textContent += line + ' = ' + result + '\n';
+                    } catch (error) {
+                        outputElement.textContent += line + ' = Invalid equation\n';
+                    }
+                });
+            };
+            fr.readAsText(inputFile.files[0]);
+        });
+        //pretvarjanje iz datoteke
+        document.getElementById('inputFile2').addEventListener('change', function () {
+            const inputFile2 = document.getElementById('inputFile2');
+            const outputElement2 = document.getElementById('output2');
+
+
+            if (!inputFile2.files.length) {
+                alert('Please choose a file.');
+                return;
+            }
+
+
+            const fr2 = new FileReader();
+            fr2.onload = (event) => {
+                const file2 = event.target.result;
+                const allLines2 = file2.split(/\r\n|\n/);
+
+
+                allLines2.forEach((line) => {
+                        let from = line.slice(0,3);
+                        if(from === 'DEC'){
+                            from = 10;
+                        } else if(from === 'BIN'){
+                            from = 2;
+                        } else if(from === 'HEX'){
+                            from = 16;
+                        } else if(from === 'OCT'){
+                            from = 8;
+                        };
+
+
+                        let to = line.slice(line.length - 3,line.length);
+                        if(to === 'DEC'){
+                            to = 10;
+                        } else if(to === 'BIN'){
+                            to = 2;
+                        } else if(to === 'HEX'){
+                            to = 16;
+                        } else if(to === 'OCT'){
+                            to = 8;
+                        }
+                        outputElement2.textContent += line + ' = ' + convertNumber(line.slice(4, line.length - 4), from, to) + '\n';
+                })
+            };
+            fr2.readAsText(inputFile2.files[0]);
+        });
+
+
+        //logična vrata iz datoteke
+        document.getElementById('inputFile3').addEventListener('change', function () {
+            const inputFile3 = document.getElementById('inputFile3');
+            const outputElement3 = document.getElementById('output3');
+
+
+            if (!inputFile3.files.length) {
+                alert('Please choose a file.');
+                return;
+            }
+
+
+            const fr3 = new FileReader();
+            fr3.onload = (event) => {
+                const file3 = event.target.result;
+                const allLines3 = file3.split(/\r\n|\n/);
+
+
+                allLines3.forEach((line) => {
+                    let search = line.search(" ");
+                    let number1 = line.slice(0, search);
+                    let operand = line.slice(search + 1, search + 4);
+                    let number2 = line.slice(search + 5, line.length);                  
+                    let result = '';
+                    if(operand === 'AND'){
+                        result = performAND(number1, number2);
+                    } else if (operand === 'ALI'){
+                        result = performOR(number1, number2);
+                    } else if (operand === 'XOR'){
+                        result = performXOR(number1, number2);
+                    }
+
+
+                    outputElement3.textContent += line + ' = ' + result + '\n';
+                })}
+                fr3.readAsText(inputFile3.files[0]);
+            });
+    </script>
+
+
+
+
+<br><br><br><br>
+        <footer>
+            <div>
+               ORS - Druga seminarska naloga 2023/24<br>
+               Rene Bračič Rajšp, Katja Korc
+            </div>
+        </footer>
+</body>
+</html>
+
