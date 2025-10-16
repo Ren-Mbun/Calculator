@@ -272,7 +272,42 @@
             </div>
         </section>
     </div>
-
+ <h1>Number System Converter</h1>
+    <br>
+    <div class="converter">
+        <section>
+            <div class="option">
+                <span>
+                    <label>Convert from:</label>
+                    <select id="typeFrom" onchange="updateConversion()">
+                        <option value="10">Decimal</option>
+                        <option value="2">Binary</option>
+                        <option value="8">Octal</option>
+                        <option value="16">Hexadecimal</option>
+                    </select>
+                </span>
+                <span>
+                    <label>Convert to:</label>
+                    <select id="typeTo" onchange="updateConversion()">
+                        <option value="10">Decimal</option>
+                        <option value="2">Binary</option>
+                        <option value="8">Octal</option>
+                        <option value="16">Hexadecimal</option>
+                    </select>
+                </span>
+                <br />
+                <br />
+                <span>
+                    <label id="inputType">Enter Number:</label>
+                    <input type="text" min="0" value="0" id="input" onkeyup="updateConversion()" />
+                </span>
+                <span>
+                    <label id="resultType">Result:</label>
+                    <input id="conversionResult" type="text" min="0" value="0" readonly />
+                </span>
+            </div>
+        </section>
+    </div>
 
     <script>
         // Funkcije za kalkulator
